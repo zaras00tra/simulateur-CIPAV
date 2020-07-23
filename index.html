@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>simulateur CIPAV</title>
+   </head>
+   <body>
+      <!--  DONNEES A SAISIR    -->
+      <div>
+         <p>DATA</p>
+         <div>
+            <table>
+               <tr>
+                  <td>Age</td>
+                  <td>
+                     <input class="age" type="number" id="age" value="32" />ans
+                  </td>
+               </tr>
+               <tr>
+                  <td>Age retraite</td>
+                  <td>
+                     <input
+                        class="age_retraite"
+                        type="number"
+                        id="age_retraite"
+                        value="65"
+                     />ans
+                  </td>
+               </tr>
+               <tr>
+                  <td>Quand es-tu devenu auto/micro entrepreneur ?</td>
+                  <td>
+                     <input
+                        class="annee_micro"
+                        type="number"
+                        id="annee_micro"
+                        value="2009"
+                     />ans
+                  </td>
+               </tr>
+
+               <tr>
+                  <td>Inflation annuelle</td>
+                  <td>
+                     <input
+                        class="inflation"
+                        type="number"
+                        id="inflation"
+                        value="0.01"
+                     />
+                  </td>
+               </tr>
+            </table>
+         </div>
+         <div>
+            <p>CA</p>
+            <div>2008 <input class="CA" type="number" id="CA_2008" /></div>
+            <div>2009 <input class="CA" type="number" id="CA_2009" /></div>
+            <div>2010 <input class="CA" type="number" id="CA_2010" /></div>
+            <div>2011 <input class="CA" type="number" id="CA_2011" /></div>
+            <div>2012 <input class="CA" type="number" id="CA_2012" /></div>
+            <div>2013 <input class="CA" type="number" id="CA_2013" /></div>
+            <div>2014 <input class="CA" type="number" id="CA_2014" /></div>
+            <div>2015 <input class="CA" type="number" id="CA_2015" /></div>
+            <div>2016 <input class="CA" type="number" id="CA_2016" /></div>
+            <div>2017 <input class="CA" type="number" id="CA_2017" /></div>
+            <div>2018 <input class="CA" type="number" id="CA_2018" /></div>
+            <div>2019 <input class="CA" type="number" id="CA_2019" /></div>
+            <div>2020 <input class="CA" type="number" id="CA_2020" /></div>
+         </div>
+      </div>
+
+      <!-- RESULTAT -->
+      <div>
+         <div><p>RESULTAT</p></div>
+         <p>
+            Pour une retraite à :
+            <input
+               type="text"
+               id="age_retraite_visu"
+               value="65ans"
+               readonly="readonly"
+            />
+         </p>
+
+         <table>
+            <tr>
+               <td></td>
+               <td>Normalement</td>
+               <td>actuellement si tu fais rien</td>
+               <td>
+                  Tu vas perdre chaque mois :
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  Point retraite de base :
+               </td>
+               <td>
+                  <input
+                     type="text"
+                     id="RB_normal_point"
+                     value="1000"
+                     readonly="readonly"
+                  />
+               </td>
+               <td>
+                  <input
+                     type="text"
+                     id="RB_actuel_point"
+                     value="333"
+                     readonly="readonly"
+                  />
+               </td>
+               <td rowspan="4">
+                  <input
+                     type="text"
+                     id="R_perdue_montant"
+                     value="500"
+                     readonly="readonly"
+                  />
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  Estimation de ta retraite de base mensuelle
+               </td>
+               <td>
+                  <input
+                     type="text"
+                     id="RB_actuel_montant"
+                     value="333"
+                     readonly="readonly"
+                  />
+               </td>
+               <td>
+                  <input
+                     type="text"
+                     id="RB_actuel_montant"
+                     value="333"
+                     readonly="readonly"
+                  />
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  Point retraite complémentaire :
+               </td>
+               <td>
+                  <input
+                     type="text"
+                     id="RC_normal_point"
+                     value="1000"
+                     readonly="readonly"
+                  />
+               </td>
+               <td>
+                  <input
+                     type="text"
+                     id="RC_actuel_point"
+                     value="333"
+                     readonly="readonly"
+                  />
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  Estimation de ta retraite complémentaire mensuelle
+               </td>
+               <td>
+                  <input
+                     type="text"
+                     id="RC_actuel_montant"
+                     value="333"
+                     readonly="readonly"
+                  />
+               </td>
+               <td>
+                  <input
+                     type="text"
+                     id="RC_actuel_montant"
+                     value="333"
+                     readonly="readonly"
+                  />
+               </td>
+            </tr>
+         </table>
+      </div>
+
+      <!-- DETAIL DES CALCULS-->
+      <div>
+         <p>DETAIL CALCUL</p>
+         <table>
+            <tr>
+               <td>année</td>
+               <td>T1_RB</td>
+               <td>T2_RB</td>
+               <td>RB_point</td>
+               <td>RC_point</td>
+            </tr>
+            <tr>
+               <td>2009</td>
+               <td><input type="number" id="T1_RB_2009" value="0" /></td>
+               <td><input type="number" id="T2_RB_2009" value="0" /></td>
+               <td><input type="number" id="RB_point_2009" value="0" /></td>
+               <td><input type="number" id="RC_point_2009" value="0" /></td>
+            </tr>
+            <tr>
+               <td>2010</td>
+               <td><input type="number" id="T1_RB_2010" value="0" /></td>
+               <td><input type="number" id="T2_RB_2010" value="0" /></td>
+               <td><input type="number" id="RB_point_2010" value="0" /></td>
+               <td><input type="number" id="RC_point_2010" value="0" /></td>
+            </tr>
+            <tr>
+               <td>2011</td>
+               <td><input type="number" id="T1_RB_2011" value="0" /></td>
+               <td><input type="number" id="T2_RB_2011" value="0" /></td>
+               <td><input type="number" id="RB_point_2011" value="0" /></td>
+               <td><input type="number" id="RC_point_2011" value="0" /></td>
+            </tr>
+            <tr>
+               <td>2012</td>
+               <td><input type="number" id="T1_RB_2012" value="0" /></td>
+               <td><input type="number" id="T2_RB_2012" value="0" /></td>
+               <td><input type="number" id="RB_point_2012" value="0" /></td>
+               <td><input type="number" id="RC_point_2012" value="0" /></td>
+            </tr>
+            <tr>
+               <td>2013</td>
+               <td><input type="number" id="T1_RB_2013" value="0" /></td>
+               <td><input type="number" id="T2_RB_2013" value="0" /></td>
+               <td><input type="number" id="RB_point_2013" value="0" /></td>
+               <td><input type="number" id="RC_point_2013" value="0" /></td>
+            </tr>
+            <tr>
+               <td>2014</td>
+               <td><input type="number" id="T1_RB_2014" value="0" /></td>
+               <td><input type="number" id="T2_RB_2014" value="0" /></td>
+               <td><input type="number" id="RB_point_2014" value="0" /></td>
+               <td><input type="number" id="RC_point_2014" value="0" /></td>
+            </tr>
+            <tr>
+               <td>2015</td>
+               <td><input type="number" id="T1_RB_2015" value="0" /></td>
+               <td><input type="number" id="T2_RB_2015" value="0" /></td>
+               <td><input type="number" id="RB_point_2015" value="0" /></td>
+               <td><input type="number" id="RC_point_2015" value="0" /></td>
+            </tr>
+            <tr>
+               <td>2016</td>
+               <td><input type="number" id="T1_RB_2016" value="0" /></td>
+               <td><input type="number" id="T2_RB_2016" value="0" /></td>
+               <td><input type="number" id="RB_point_2016" value="0" /></td>
+               <td><input type="number" id="RC_point_2016" value="0" /></td>
+            </tr>
+            <tr>
+               <td>2017</td>
+               <td><input type="number" id="T1_RB_2017" value="0" /></td>
+               <td><input type="number" id="T2_RB_2017" value="0" /></td>
+               <td><input type="number" id="RB_point_2017" value="0" /></td>
+               <td><input type="number" id="RC_point_2017" value="0" /></td>
+            </tr>
+            <tr>
+               <td>2018</td>
+               <td><input type="number" id="T1_RB_2018" value="0" /></td>
+               <td><input type="number" id="T2_RB_2018" value="0" /></td>
+               <td><input type="number" id="RB_point_2018" value="0" /></td>
+               <td><input type="number" id="RC_point_2018" value="0" /></td>
+            </tr>
+            <tr>
+               <td>2019</td>
+               <td><input type="number" id="T1_RB_2019" value="0" /></td>
+               <td><input type="number" id="T2_RB_2019" value="0" /></td>
+               <td><input type="number" id="RB_point_2019" value="0" /></td>
+               <td><input type="number" id="RC_point_2019" value="0" /></td>
+            </tr>
+         </table>
+      </div>
+      <!-- PARAMETRES POUR LES CALCULS-->
+      <div>
+         <p>PARAMETRE</p>
+
+         <p>DATA</p>
+         <table>
+            <tr>
+               <td>pénalité retraite de base</td>
+               <td>
+                  <input
+                     class="penalite_RB"
+                     type="number"
+                     id="penalite_RB"
+                     value="0.30"
+                  />
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  pénalité retraite complémentaire avant 2017 [Abatement 34%]
+               </td>
+               <td>
+                  <input
+                     class="penalite_RC"
+                     type="number"
+                     id="penalite_RC"
+                     value="0.66"
+                  />
+               </td>
+            </tr>
+            <tr>
+               <td>pénalité retraite complémentaire à partir de 2017 inclu</td>
+               <td>
+                  <input
+                     class="penalite_RC"
+                     type="number"
+                     id="penalite_RC"
+                     value="0.50"
+                  />
+               </td>
+            </tr>
+         </table>
+         <table>
+            <tr>
+               <td>Année</td>
+               <td>T1</td>
+               <td>T2</td>
+               <td>T1maxpoint</td>
+               <td>T2maxpoint</td>
+               <td>Smic horraire</td>
+               <td>multiplieur</td>
+               <td>année smic à prendre</td>
+               <td>classeA_seuil</td>
+               <td>classeA_point</td>
+               <td>classeB_seuil</td>
+               <td>classeB_point</td>
+               <td>classeC_seuil</td>
+               <td>classeC_point</td>
+               <td>classeD_seuil</td>
+               <td>classeD_point</td>
+               <td>classeE_seuil</td>
+               <td>classeE_point</td>
+            </tr>
+            <tr>
+               <td>2007</td>
+               <td><input type="number" id="T1_2007" value="0" /></td>
+               <td><input type="number" id="T2_2007" value="0" /></td>
+               <td><input type="number" id="T1maxpoint_2007" value="0" /></td>
+               <td><input type="number" id="T2maxpoint_2007" value="0" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2007" value="8.44" />
+               </td>
+               <td><input type="number" id="nb_smic_2007" value="200" /></td>
+               <td><input type="number" id="anne_smic_2007" value="2006" /></td>
+               <td><input type="number" id="Seuil_A_2007" value="" /></td>
+               <td><input type="number" id="Point_A_2007" value="" /></td>
+               <td><input type="number" id="Seuil_B_2007" value="" /></td>
+               <td><input type="number" id="Point_B_2007" value="" /></td>
+               <td><input type="number" id="Seuil_C_2007" value="" /></td>
+               <td><input type="number" id="Point_C_2007" value="" /></td>
+               <td><input type="number" id="Seuil_D_2007" value="" /></td>
+               <td><input type="number" id="Point_D_2007" value="" /></td>
+               <td><input type="number" id="Seuil_E_2007" value="" /></td>
+               <td><input type="number" id="Point_E_2007" value="" /></td>
+            </tr>
+            <tr>
+               <td>2008</td>
+               <td><input type="number" id="T1_2008" value="0" /></td>
+               <td><input type="number" id="T2_2008" value="0" /></td>
+               <td><input type="number" id="T1maxpoint_2008" value="0" /></td>
+               <td><input type="number" id="T2maxpoint_2008" value="0" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2008" value="8.71" />
+               </td>
+               <td><input type="number" id="nb_smic_2008" value="200" /></td>
+               <td><input type="number" id="anne_smic_2008" value="2007" /></td>
+               <td><input type="number" id="Seuil_A_2008" value="" /></td>
+               <td><input type="number" id="Point_A_2008" value="" /></td>
+               <td><input type="number" id="Seuil_B_2008" value="" /></td>
+               <td><input type="number" id="Point_B_2008" value="" /></td>
+               <td><input type="number" id="Seuil_C_2008" value="" /></td>
+               <td><input type="number" id="Point_C_2008" value="" /></td>
+               <td><input type="number" id="Seuil_D_2008" value="" /></td>
+               <td><input type="number" id="Point_D_2008" value="" /></td>
+               <td><input type="number" id="Seuil_E_2008" value="" /></td>
+               <td><input type="number" id="Point_E_2008" value="" /></td>
+            </tr>
+            <tr>
+               <td>2009</td>
+               <td><input type="number" id="T1_2009" value="29162" /></td>
+               <td><input type="number" id="T2_2009" value="171540" /></td>
+               <td><input type="number" id="T1maxpoint_2009" value="450" /></td>
+               <td><input type="number" id="T2maxpoint_2009" value="100" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2009" value="8.82" />
+               </td>
+               <td><input type="number" id="nb_smic_2009" value="200" /></td>
+               <td><input type="number" id="anne_smic_2009" value="2008" /></td>
+               <td><input type="number" id="Seuil_A_2009" value="40605" /></td>
+               <td><input type="number" id="Point_A_2009" value="40" /></td>
+               <td><input type="number" id="Seuil_B_2009" value="" /></td>
+               <td><input type="number" id="Point_B_2009" value="" /></td>
+               <td><input type="number" id="Seuil_C_2009" value="" /></td>
+               <td><input type="number" id="Point_C_2009" value="" /></td>
+               <td><input type="number" id="Seuil_D_2009" value="" /></td>
+               <td><input type="number" id="Point_D_2009" value="" /></td>
+               <td><input type="number" id="Seuil_E_2009" value="" /></td>
+               <td><input type="number" id="Point_E_2009" value="" /></td>
+            </tr>
+            <tr>
+               <td>2010</td>
+               <td><input type="number" id="T1_2010" value="29427" /></td>
+               <td><input type="number" id="T2_2010" value="173100" /></td>
+               <td><input type="number" id="T1maxpoint_2010" value="450" /></td>
+               <td><input type="number" id="T2maxpoint_2010" value="100" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2010" value="8.86" />
+               </td>
+               <td><input type="number" id="nb_smic_2010" value="200" /></td>
+               <td><input type="number" id="anne_smic_2010" value="2009" /></td>
+               <td><input type="number" id="Seuil_A_2010" value="40605" /></td>
+               <td><input type="number" id="Point_A_2010" value="40" /></td>
+               <td><input type="number" id="Seuil_B_2010" value="" /></td>
+               <td><input type="number" id="Point_B_2010" value="" /></td>
+               <td><input type="number" id="Seuil_C_2010" value="" /></td>
+               <td><input type="number" id="Point_C_2010" value="" /></td>
+               <td><input type="number" id="Seuil_D_2010" value="" /></td>
+               <td><input type="number" id="Point_D_2010" value="" /></td>
+               <td><input type="number" id="Seuil_E_2010" value="" /></td>
+               <td><input type="number" id="Point_E_2010" value="" /></td>
+            </tr>
+            <tr>
+               <td>2011</td>
+               <td><input type="number" id="T1_2011" value="30049" /></td>
+               <td><input type="number" id="T2_2011" value="176760" /></td>
+               <td><input type="number" id="T1maxpoint_2011" value="450" /></td>
+               <td><input type="number" id="T2maxpoint_2011" value="100" /></td>
+               <td><input type="number" id="smic_horaire_2011" value="0" /></td>
+               <td><input type="number" id="nb_smic_2011" value="200" /></td>
+               <td><input type="number" id="anne_smic_2012" value="2010" /></td>
+               <td><input type="number" id="Seuil_A_2011" value="41050" /></td>
+               <td><input type="number" id="Point_A_2011" value="40" /></td>
+               <td><input type="number" id="Seuil_B_2011" value="" /></td>
+               <td><input type="number" id="Point_B_2011" value="" /></td>
+               <td><input type="number" id="Seuil_C_2011" value="" /></td>
+               <td><input type="number" id="Point_C_2011" value="" /></td>
+               <td><input type="number" id="Seuil_D_2011" value="" /></td>
+               <td><input type="number" id="Point_D_2011" value="" /></td>
+               <td><input type="number" id="Seuil_E_2011" value="" /></td>
+               <td><input type="number" id="Point_E_2011" value="" /></td>
+            </tr>
+            <tr>
+               <td>2012</td>
+               <td><input type="number" id="T1_2012" value="30916" /></td>
+               <td><input type="number" id="T2_2012" value="181860" /></td>
+               <td><input type="number" id="T1maxpoint_2012" value="450" /></td>
+               <td><input type="number" id="T2maxpoint_2012" value="100" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2012" value="9.19" />
+               </td>
+               <td><input type="number" id="nb_smic_2012" value="200" /></td>
+               <td><input type="number" id="anne_smic_2012" value="2012" /></td>
+               <td><input type="number" id="Seuil_A_2012" value="41050" /></td>
+               <td><input type="number" id="Point_A_2012" value="40" /></td>
+               <td><input type="number" id="Seuil_B_2012" value="" /></td>
+               <td><input type="number" id="Point_B_2012" value="" /></td>
+               <td><input type="number" id="Seuil_C_2012" value="" /></td>
+               <td><input type="number" id="Point_C_2012" value="" /></td>
+               <td><input type="number" id="Seuil_D_2012" value="" /></td>
+               <td><input type="number" id="Point_D_2012" value="" /></td>
+               <td><input type="number" id="Seuil_E_2012" value="" /></td>
+               <td><input type="number" id="Point_E_2012" value="" /></td>
+            </tr>
+            <tr>
+               <td>2013</td>
+               <td><input type="number" id="T1_2013" value="31477" /></td>
+               <td><input type="number" id="T2_2013" value="181860" /></td>
+               <td><input type="number" id="T1maxpoint_2013" value="450" /></td>
+               <td><input type="number" id="T2maxpoint_2013" value="100" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2013" value="9.43" />
+               </td>
+               <td><input type="number" id="nb_smic_2013" value="200" /></td>
+               <td><input type="number" id="anne_smic_2013" value="2013" /></td>
+               <td><input type="number" id="Seuil_A_2013" value="41050" /></td>
+               <td><input type="number" id="Point_A_2013" value="36" /></td>
+               <td><input type="number" id="Seuil_B_2013" value="" /></td>
+               <td><input type="number" id="Point_B_2013" value="" /></td>
+               <td><input type="number" id="Seuil_C_2013" value="" /></td>
+               <td><input type="number" id="Point_C_2013" value="" /></td>
+               <td><input type="number" id="Seuil_D_2013" value="" /></td>
+               <td><input type="number" id="Point_D_2013" value="" /></td>
+               <td><input type="number" id="Seuil_E_2013" value="" /></td>
+               <td><input type="number" id="Point_E_2013" value="" /></td>
+            </tr>
+            <tr>
+               <td>2014</td>
+               <td><input type="number" id="T1_2014" value="31916" /></td>
+               <td><input type="number" id="T2_2014" value="187740" /></td>
+               <td><input type="number" id="T1maxpoint_2014" value="450" /></td>
+               <td><input type="number" id="T2maxpoint_2014" value="100" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2014" value="9.53" />
+               </td>
+               <td><input type="number" id="nb_smic_2014" value="200" /></td>
+               <td><input type="number" id="anne_smic_2014" value="2014" /></td>
+               <td><input type="number" id="Seuil_A_2014" value="26580" /></td>
+               <td><input type="number" id="Point_A_2014" value="36" /></td>
+               <td><input type="number" id="Seuil_B_2014" value="49280" /></td>
+               <td><input type="number" id="Point_B_2014" value="72" /></td>
+               <td><input type="number" id="Seuil_C_2014" value="" /></td>
+               <td><input type="number" id="Point_C_2014" value="" /></td>
+               <td><input type="number" id="Seuil_D_2014" value="" /></td>
+               <td><input type="number" id="Point_D_2014" value="" /></td>
+               <td><input type="number" id="Seuil_E_2014" value="" /></td>
+               <td><input type="number" id="Point_E_2014" value="" /></td>
+            </tr>
+            <tr>
+               <td>2015</td>
+               <td><input type="number" id="T1_2015" value="38040" /></td>
+               <td><input type="number" id="T2_2015" value="190200" /></td>
+               <td><input type="number" id="T1maxpoint_2015" value="525" /></td>
+               <td><input type="number" id="T2maxpoint_2015" value="25" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2015" value="9.61" />
+               </td>
+               <td><input type="number" id="nb_smic_2015" value="150" /></td>
+               <td><input type="number" id="anne_smic_2015" value="2015" /></td>
+               <td><input type="number" id="Seuil_A_2015" value="26580" /></td>
+               <td><input type="number" id="Point_A_2015" value="36" /></td>
+               <td><input type="number" id="Seuil_B_2015" value="49280" /></td>
+               <td><input type="number" id="Point_B_2015" value="72" /></td>
+               <td><input type="number" id="Seuil_C_2015" value="" /></td>
+               <td><input type="number" id="Point_C_2015" value="" /></td>
+               <td><input type="number" id="Seuil_D_2015" value="" /></td>
+               <td><input type="number" id="Point_D_2015" value="" /></td>
+               <td><input type="number" id="Seuil_E_2015" value="" /></td>
+               <td><input type="number" id="Point_E_2015" value="" /></td>
+            </tr>
+            <tr>
+               <td>2016</td>
+               <td><input type="number" id="T1_2016" value="38616" /></td>
+               <td><input type="number" id="T2_2016" value="193080" /></td>
+               <td><input type="number" id="T1maxpoint_2016" value="525" /></td>
+               <td><input type="number" id="T2maxpoint_2016" value="25" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2016" value="9.67" />
+               </td>
+               <td><input type="number" id="nb_smic_2016" value="150" /></td>
+               <td><input type="number" id="anne_smic_2016" value="2016" /></td>
+               <td><input type="number" id="Seuil_A_2016" value="26580" /></td>
+               <td><input type="number" id="Point_A_2016" value="36" /></td>
+               <td><input type="number" id="Seuil_B_2016" value="49280" /></td>
+               <td><input type="number" id="Point_B_2016" value="72" /></td>
+               <td><input type="number" id="Seuil_C_2016" value="57850" /></td>
+               <td><input type="number" id="Point_C_2016" value="108" /></td>
+               <td><input type="number" id="Seuil_D_2016" value="66400" /></td>
+               <td><input type="number" id="Point_D_2016" value="180" /></td>
+               <td><input type="number" id="Seuil_E_2016" value="83060" /></td>
+               <td><input type="number" id="Point_E_2016" value="252" /></td>
+            </tr>
+            <tr>
+               <td>2017</td>
+               <td><input type="number" id="T1_2017" value="39228" /></td>
+               <td><input type="number" id="T2_2017" value="196140" /></td>
+               <td><input type="number" id="T1maxpoint_2017" value="525" /></td>
+               <td><input type="number" id="T2maxpoint_2017" value="25" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2017" value="9.76" />
+               </td>
+               <td><input type="number" id="nb_smic_2017" value="150" /></td>
+               <td><input type="number" id="anne_smic_2017" value="2017" /></td>
+               <td><input type="number" id="Seuil_A_2017" value="26580" /></td>
+               <td><input type="number" id="Point_A_2017" value="36" /></td>
+               <td><input type="number" id="Seuil_B_2017" value="49280" /></td>
+               <td><input type="number" id="Point_B_2017" value="72" /></td>
+               <td><input type="number" id="Seuil_C_2017" value="57850" /></td>
+               <td><input type="number" id="Point_C_2017" value="108" /></td>
+               <td><input type="number" id="Seuil_D_2017" value="66400" /></td>
+               <td><input type="number" id="Point_D_2017" value="180" /></td>
+               <td><input type="number" id="Seuil_E_2017" value="83060" /></td>
+               <td><input type="number" id="Point_E_2017" value="252" /></td>
+            </tr>
+            <tr>
+               <td>2018</td>
+               <td><input type="number" id="T1_2018" value="39732" /></td>
+               <td><input type="number" id="T2_2018" value="198660" /></td>
+               <td><input type="number" id="T1maxpoint_2018" value="525" /></td>
+               <td><input type="number" id="T2maxpoint_2018" value="25" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2018" value="9.88" />
+               </td>
+               <td><input type="number" id="nb_smic_2018" value="150" /></td>
+               <td><input type="number" id="anne_smic_2018" value="2018" /></td>
+               <td><input type="number" id="Seuil_A_2018" value="26580" /></td>
+               <td><input type="number" id="Point_A_2018" value="36" /></td>
+               <td><input type="number" id="Seuil_B_2018" value="49280" /></td>
+               <td><input type="number" id="Point_B_2018" value="72" /></td>
+               <td><input type="number" id="Seuil_C_2018" value="57850" /></td>
+               <td><input type="number" id="Point_C_2018" value="108" /></td>
+               <td><input type="number" id="Seuil_D_2018" value="66400" /></td>
+               <td><input type="number" id="Point_D_2018" value="180" /></td>
+               <td><input type="number" id="Seuil_E_2018" value="83060" /></td>
+               <td><input type="number" id="Point_E_2018" value="252" /></td>
+            </tr>
+            <tr>
+               <td>2019</td>
+               <td><input type="number" id="T1_2019" value="40524" /></td>
+               <td><input type="number" id="T2_2019" value="202620" /></td>
+               <td><input type="number" id="T1maxpoint_2019" value="525" /></td>
+               <td><input type="number" id="T2maxpoint_2019" value="25" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2019" value="10.03" />
+               </td>
+               <td><input type="number" id="nb_smic_2019" value="150" /></td>
+               <td><input type="number" id="anne_smic_2019" value="2019" /></td>
+
+               <td><input type="number" id="Seuil_A_2019" value="26580" /></td>
+               <td><input type="number" id="Point_A_2019" value="36" /></td>
+               <td><input type="number" id="Seuil_B_2019" value="49280" /></td>
+               <td><input type="number" id="Point_B_2019" value="72" /></td>
+               <td><input type="number" id="Seuil_C_2019" value="57850" /></td>
+               <td><input type="number" id="Point_C_2019" value="108" /></td>
+               <td><input type="number" id="Seuil_D_2019" value="66400" /></td>
+               <td><input type="number" id="Point_D_2019" value="180" /></td>
+               <td><input type="number" id="Seuil_E_2019" value="83060" /></td>
+               <td><input type="number" id="Point_E_2019" value="252" /></td>
+            </tr>
+            <tr>
+               <td>2020</td>
+               <td><input type="number" id="T1_2020" value="0" /></td>
+               <td><input type="number" id="T2_2020" value="0" /></td>
+               <td><input type="number" id="T1maxpoint_2020" value="0" /></td>
+               <td><input type="number" id="T2maxpoint_2020" value="0" /></td>
+               <td>
+                  <input type="number" id="smic_horaire_2020" value="10.15" />
+               </td>
+               <td><input type="number" id="nb_smic_2020" value="150" /></td>
+               <td><input type="number" id="anne_smic_2020" value="2020" /></td>
+               <td><input type="number" id="Seuil_A_2020" value="" /></td>
+               <td><input type="number" id="Point_A_2020" value="" /></td>
+               <td><input type="number" id="Seuil_B_2020" value="" /></td>
+               <td><input type="number" id="Point_B_2020" value="" /></td>
+               <td><input type="number" id="Seuil_C_2020" value="" /></td>
+               <td><input type="number" id="Point_C_2020" value="" /></td>
+               <td><input type="number" id="Seuil_D_2020" value="" /></td>
+               <td><input type="number" id="Point_D_2020" value="" /></td>
+               <td><input type="number" id="Seuil_E_2020" value="" /></td>
+               <td><input type="number" id="Point_E_2020" value="" /></td>
+            </tr>
+         </table>
+      </div>
+      <script
+         type="text/javascript"
+         src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      ></script>
+      <script type="text/javascript" src="/JS/Calcul.js"></script>
+      <script type="text/javascript" src="/JS/Load_funct.js"></script>
+   </body>
+</html>
